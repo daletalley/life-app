@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Finance from './components/Dashboard/Finance';
+import Wellness from './components/Dashboard/Wellness';
+import Travel from './components/Dashboard/Travel';
+import CustomerService from './components/Dashboard/CustomerService';
+import Marketing from './components/Dashboard/Marketing';
+import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/finance" element={<Finance />} />
+                    <Route path="/wellness" element={<Wellness />} />
+                    <Route path="/travel" element={<Travel />} />
+                    <Route path="/customer-service" element={<CustomerService />} />
+                    <Route path="/marketing" element={<Marketing />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+            </AuthProvider>
+        </Router>
+    );
 }
 
 export default App;
